@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
-public static class SoundManager{
+public static class SoundManager
+{
 
-    public enum Sound{
+    public enum Sound
+    {
         BirdJump,
         Score,
         Lose,
@@ -13,7 +15,8 @@ public static class SoundManager{
         ButtonClick,
     }
 
-    public static void PlaySound(Sound sound) {
+    public static void PlaySound(Sound sound)
+    {
         GameObject gameObject = new GameObject("Sound", typeof(AudioSource));
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.PlayOneShot(GetAudioClip(sound));
@@ -23,7 +26,7 @@ public static class SoundManager{
     {
         foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.GetInstance().soundAudioClipArray)
         {
-            if(soundAudioClip.sound == sound)
+            if (soundAudioClip.sound == sound)
             {
                 return soundAudioClip.audioClip;
             }
@@ -39,5 +42,5 @@ public static class SoundManager{
         buttonUI.ClickFunc += () => PlaySound(Sound.ButtonClick);
 
     }
-} 
+}
 

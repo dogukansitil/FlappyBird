@@ -8,16 +8,19 @@ public class ScoreWindow : MonoBehaviour
     private Text highscoreText;
     private Text scoreText;
 
-    private void Awake() {
+    private void Awake()
+    {
         scoreText = transform.Find("scoreText").GetComponent<Text>();
         highscoreText = transform.Find("highscoreText").GetComponent<Text>();
     }
 
-    private void Start() {
+    private void Start()
+    {
         highscoreText.text = "HIGHSCORE: " + Score.GetHighscore().ToString();
     }
 
-    private void Update() {
+    private void Update()
+    {
         scoreText.text = Level.GetInstance().GetPipesPassedCount().ToString();
 
     }

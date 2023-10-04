@@ -47,6 +47,7 @@ MonoBehaviour:
   pipeHeadSprite: {fileID: 21300000, guid: 165625e1f34d18e419d1c11d5ac1e5c6, type: 3}
   pfPipeHead: {fileID: 3675691451939395415, guid: 47ed64de8acb44d28b611e03cec992ab, type: 3}
   pfPipeBody: {fileID: 1221076063556938880, guid: 4f1a4b553776b4da2ae4194ca29d911b, type: 3}
+  pfGround: {fileID: 6145128598495590771, guid: 06a6151d8b56f4e76966edd53414658a, type: 3}
   soundAudioClipArray:
   - sound: 0
     audioClip: {fileID: 8300000, guid: 98180c6e462e607418d56d13fd9ec3ca, type: 3}

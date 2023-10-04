@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class Loader { 
+public static class Loader
+{
 
-    public enum Scene{
+    public enum Scene
+    {
         GameScene,
         Loading,
         MainMenu,
@@ -13,14 +15,16 @@ public static class Loader {
 
     private static Scene targetScene;
 
-    public static void Load(Scene scene){
+    public static void Load(Scene scene)
+    {
         SceneManager.LoadScene(Scene.Loading.ToString());
 
         targetScene = scene;
-    }   
+    }
 
-    public static void LoadTargetScene(){
+    public static void LoadTargetScene()
+    {
         SceneManager.LoadScene(targetScene.ToString());
     }
-    
+
 }

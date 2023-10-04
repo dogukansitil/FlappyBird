@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoaderUpdate : MonoBehaviour{
+public class LoaderUpdate : MonoBehaviour
+{
 
-    private void Update(){
+    private void Update()
+    {
 
         Loader.LoadTargetScene();
     }
