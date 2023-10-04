@@ -7,7 +7,7 @@ using CodeMonkey;
 public class Bird : MonoBehaviour
 {
 
-    private const float JUMP_AMOUNT = 100f;
+    private const float JUMP_AMOUNT = 90f;
 
     private static Bird instance;
 
@@ -30,7 +30,7 @@ public class Bird : MonoBehaviour
     {
         instance = this;
         birdRigidbody2D = GetComponent<Rigidbody2D>();
-        birdRigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        birdRigidbody2D.bodyType = RigidbodyType2D.Static;
         state = State.WaitingToStart;
 
     }
@@ -53,6 +53,7 @@ public class Bird : MonoBehaviour
                 {
                     Jump();
                 }
+                transform.eulerAngles = new Vector3(0, 0, birdRigidbody2D.velocity.y * .2f);
                 break;
             case State.Dead:
                 break;
@@ -68,7 +69,7 @@ public class Bird : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
 
-        birdRigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        birdRigidbody2D.bodyType = RigidbodyType2D.Static;
         SoundManager.PlaySound(SoundManager.Sound.Lose);
         if (OnDied != null) OnDied(this, EventArgs.Empty);
     }

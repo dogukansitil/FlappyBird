@@ -19,11 +19,22 @@ public class GameOverWindow : MonoBehaviour
 
         transform.Find("mainMenuBtn").GetComponent<Button_UI>().ClickFunc = () => { Loader.Load(Loader.Scene.MainMenu); };
         transform.Find("mainMenuBtn").GetComponent<Button_UI>().AddButtonSounds();
+
+
+        transform.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
     private void Start()
     {
         Bird.GetInstance().OnDied += Bird_OnDied;
-        Hide();
+        Hide(); 
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Retry
+            Loader.Load(Loader.Scene.GameScene);
+        }
     }
     private void Bird_OnDied(object sender, System.EventArgs e)
     {

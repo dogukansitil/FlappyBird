@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +13,9 @@ public class Level : MonoBehaviour
     private const float PIPE_DESTROY_X_POSITION = -100f;
     private const float PIPE_SPAWN_X_POSITION = +100f;
     private const float GROUND_DESTROY_X_POSITION = -200f;
-    private const float CLOUD_DESTROY_X_POSITION = -100f;
-    private const float CLOUD_SPAWN_X_POSITION = +100f;
+    private const float CLOUD_DESTROY_X_POSITION = -160f;
+    private const float CLOUD_SPAWN_X_POSITION = +160f;
+    private const float CLOUD_SPAWN_Y_POSITION = +30f;
     private const float BIRD_X_POSITION = 0f;
 
     private static Level instance;
@@ -87,9 +87,19 @@ public class Level : MonoBehaviour
     private void SpawnInitialClouds()
     {
         cloudList = new List<Transform>();
-        float cloudY = +47.5f;
-        Transform cloudTransform = Instantiate(GameAssets.GetInstance().pfCloud_1, new Vector3(0, cloudY, 0), Quaternion.identity);
+        Transform cloudTransform;
+        cloudTransform = Instantiate(GetCloudPrefabTransform(), new Vector3(0, CLOUD_SPAWN_Y_POSITION, 0), Quaternion.identity);
         cloudList.Add(cloudTransform);
+    }
+
+    private Transform GetCloudPrefabTransform()
+    {
+        switch (Random.Range(0, 3)) {
+        default:
+        case 0: return GameAssets.GetInstance().pfCloud_1;
+        case 1: return GameAssets.GetInstance().pfCloud_2;
+        case 2: return GameAssets.GetInstance().pfCloud_3;
+        }
     }
 
     private void HandleClouds()
@@ -99,10 +109,9 @@ public class Level : MonoBehaviour
         if (cloudSpawnTimer < 0)
         {
             //Time to Spawn another cloud ****
-            float cloudSpawnTimerMax = .5f;
+            float cloudSpawnTimerMax = 6f;
             cloudSpawnTimer = cloudSpawnTimerMax;
-            float cloudY = +47.5f;
-            Transform cloudTransform = Instantiate(GameAssets.GetInstance().pfCloud_1, new Vector3(0, cloudY, 0), Quaternion.identity);
+            Transform cloudTransform = Instantiate(GetCloudPrefabTransform(), new Vector3(CLOUD_SPAWN_X_POSITION, CLOUD_SPAWN_Y_POSITION, 0), Quaternion.identity);
             cloudList.Add(cloudTransform);
         }
 
@@ -113,7 +122,7 @@ public class Level : MonoBehaviour
             Transform cloudTransform = cloudList[i];
             {
                 // Move cloud by less speed than pipes for Parallax
-                cloudTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime * .5f;
+                cloudTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime * .7f;
             }
             if (cloudTransform.position.x < CLOUD_DESTROY_X_POSITION)
             {
@@ -217,19 +226,19 @@ public class Level : MonoBehaviour
         {
             case Difficulty.Easy:
                 gapSize = 50f;
-                pipeSpawnTimerMax = 1.2f;
+                pipeSpawnTimerMax = 1.4f;
                 break;
             case Difficulty.Medium:
                 gapSize = 40f;
-                pipeSpawnTimerMax = 1.1f;
+                pipeSpawnTimerMax = 1.3f;
                 break;
             case Difficulty.Hard:
                 gapSize = 33f;
-                pipeSpawnTimerMax = 1.0f;
+                pipeSpawnTimerMax = 1.1f;
                 break;
             case Difficulty.Impossible:
                 gapSize = 24f;
-                pipeSpawnTimerMax = .8f;
+                pipeSpawnTimerMax = 1.0f;
                 break;
 
         }
