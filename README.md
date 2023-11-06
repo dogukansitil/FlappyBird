@@ -28,11 +28,13 @@ To run the game locally using Unity, follow these steps:
 
 6. Enjoy playing Flappy Bird!
 
-##How to Play
+## How To Play
+
 Use the spacebar or left mouse button click to make the bird jump and avoid hitting the pipes.
 The goal is to pass through as many pipes as possible without crashing.
 
-##Features
+## Features
+
 Simple and addictive gameplay.
 Score tracking to keep a record of your best performances.
 Responsive design that works on both desktop and mobile devices.
